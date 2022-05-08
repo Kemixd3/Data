@@ -5,6 +5,7 @@ from fileinput import filename
 from numpy import imag
 import streamlit as st
 import os
+
 from PIL import Image
 import PIL 
 import csv
@@ -146,7 +147,6 @@ if choice == "New":
     path = os.getcwd()
     FP_search = st.text_input("Search:", value="")
 
-    csvfile = open('opslag.csv')
     spamreader = csv.reader(csvfile, delimiter=',') 
 
     if FP_search == None or FP_search == "":
@@ -213,7 +213,7 @@ elif choice == "Upload":
                 sa.write((UL_image).getbuffer())  
                 sa.close()
 
-            image = tk.open(str(TEMP)+".png")
+            image = .open(str(TEMP)+".png")
             if image.size[1] > image.size[0]*1.5:
                 newimg = image.resize((600, 600))
                 newimg.save(str(TEMP)+".png")
