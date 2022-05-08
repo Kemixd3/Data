@@ -1,6 +1,7 @@
 from distutils.command.upload import upload
 from fileinput import filename
-from tkinter import Image
+#from tkinter import Image
+import tkinter as tk
 from numpy import imag
 import streamlit as st
 import os
@@ -212,7 +213,7 @@ elif choice == "Upload":
                 sa.write((UL_image).getbuffer())  
                 sa.close()
 
-            image = Image.open(str(TEMP)+".png")
+            image = tk.open(str(TEMP)+".png")
             if image.size[1] > image.size[0]*1.5:
                 newimg = image.resize((600, 600))
                 newimg.save(str(TEMP)+".png")
