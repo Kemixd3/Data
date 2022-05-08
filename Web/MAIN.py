@@ -79,13 +79,13 @@ def liked(Filename, User):
     #if User != "None":
     #    g = False
     #    Accounts= []
-    #    ac = open('data.csv', 'r')
+    #    ac = open('opslag.csv', 'r')
     #    reader = csv.reader(ac)
     #    for line in reader:
     #        Accounts.append(line)
 #
     #    tem = 0
-    #    with open('data.csv','w',newline='') as wr:
+    #    with open('opslag.csv','w',newline='') as wr:
     #        writer = csv.writer(wr)
     #        for line in range(len(Accounts)):
     #            tmp = Accounts[line][4].strip()
@@ -146,7 +146,7 @@ if choice == "New":
     path = os.getcwd()
     FP_search = st.text_input("Search:", value="")
 
-    csvfile = open('data.csv', newline='')
+    csvfile = open('opslag.csv', newline='')
     spamreader = csv.reader(csvfile, delimiter=',') 
 
     if FP_search == None or FP_search == "":
@@ -163,7 +163,7 @@ if choice == "New":
 
 elif choice == "Top":
     st.markdown('<p class="big-font">Top</p>', unsafe_allow_html=True)
-    csvfile = open('data.csv', newline='')
+    csvfile = open('opslag.csv', newline='')
     spamreader = csv.reader(csvfile, delimiter=',') 
     reader = csv.reader(csvfile)
     data = list(reader)
@@ -201,7 +201,7 @@ elif choice == "Upload":
                 f.write(str(TEMP))
                 f.close()
 
-            with open('data.csv', 'a', newline='\n') as csvfile:
+            with open('opslag.csv', 'a', newline='\n') as csvfile:
                 spamwriter = csv.writer(csvfile, delimiter=' ', quoting=csv.QUOTE_MINIMAL)
                 today = date.today()
                 today = today.strftime("%m/%d/%y")
