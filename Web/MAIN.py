@@ -1,11 +1,9 @@
 from distutils.command.upload import upload
 from fileinput import filename
-#from tkinter import Image
-
+from tkinter import Image
 from numpy import imag
 import streamlit as st
 import os
-
 from PIL import Image
 import PIL 
 import csv
@@ -62,7 +60,7 @@ body {
 
 #Sidebar kan også være radio
 st.sidebar.title("Menu")
-choice = st.sidebar.selectbox("",('New', 'Top', 'Upload', 'Login', 'Create account'))
+choice = st.sidebar.radio("",('New', 'Top', 'Upload', 'Login', 'Create account'))
 
 
 def load_image(image_file):
@@ -80,13 +78,13 @@ def liked(Filename, User):
     #if User != "None":
     #    g = False
     #    Accounts= []
-    #    ac = open('opslag.csv', 'r')
+    #    ac = open('data.csv', 'r')
     #    reader = csv.reader(ac)
     #    for line in reader:
     #        Accounts.append(line)
 #
     #    tem = 0
-    #    with open('opslag.csv','w',newline='') as wr:
+    #    with open('data.csv','w',newline='') as wr:
     #        writer = csv.writer(wr)
     #        for line in range(len(Accounts)):
     #            tmp = Accounts[line][4].strip()
@@ -147,10 +145,13 @@ if choice == "New":
     path = os.getcwd()
     FP_search = st.text_input("Search:", value="")
 
- 
+    csvfile = open('data.csv', newline='')
+    spamreader = csv.reader(csvfile, delimiter=',') 
 
     if FP_search == None or FP_search == "":
-        
+        for line in reversed(list(spamreader)):
+            FP_load(line[0], line[1],line[2],line[3],line[4],line[5])
+    else:
         for line in reversed(list(spamreader)):
             if FP_search.lower() in line[1].lower():
                 FP_load(line[0], line[1],line[2],line[3],line[4],line[5])
@@ -161,7 +162,7 @@ if choice == "New":
 
 elif choice == "Top":
     st.markdown('<p class="big-font">Top</p>', unsafe_allow_html=True)
-    csvfile = open('opslag.csv', newline='')
+    csvfile = open('data.csv', newline='')
     spamreader = csv.reader(csvfile, delimiter=',') 
     reader = csv.reader(csvfile)
     data = list(reader)
@@ -199,7 +200,7 @@ elif choice == "Upload":
                 f.write(str(TEMP))
                 f.close()
 
-            with open('opslag.csv', 'a', newline='\n') as csvfile:
+            with open('data.csv', 'a', newline='\n') as csvfile:
                 spamwriter = csv.writer(csvfile, delimiter=' ', quoting=csv.QUOTE_MINIMAL)
                 today = date.today()
                 today = today.strftime("%m/%d/%y")
@@ -211,7 +212,10 @@ elif choice == "Upload":
                 sa.write((UL_image).getbuffer())  
                 sa.close()
 
-          
+            image = Image.open(str(TEMP)+".png")
+            if image.size[1] > image.size[0]*1.5:
+                newimg = image.resize((600, 600))
+                newimg.save(str(TEMP)+".png")
 
     elif User == "None":
         st.write("Please Login first")
