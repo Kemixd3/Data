@@ -1,7 +1,7 @@
 from distutils.command.upload import upload
 from fileinput import filename
 #from tkinter import Image
-import tkinter as tk
+
 from numpy import imag
 import streamlit as st
 import os
