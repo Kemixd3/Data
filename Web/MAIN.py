@@ -213,10 +213,7 @@ elif choice == "Upload":
                 sa.write((UL_image).getbuffer())  
                 sa.close()
 
-            image = .open(str(TEMP)+".png")
-            if image.size[1] > image.size[0]*1.5:
-                newimg = image.resize((600, 600))
-                newimg.save(str(TEMP)+".png")
+          
 
     elif User == "None":
         st.write("Please Login first")
