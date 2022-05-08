@@ -147,7 +147,7 @@ if choice == "New":
     path = os.getcwd()
     FP_search = st.text_input("Search:", value="")
 
-    spamreader = csv.reader(csvfile, delimiter=',') 
+ 
 
     if FP_search == None or FP_search == "":
         for line in reversed(list(spamreader)):
