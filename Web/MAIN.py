@@ -151,8 +151,6 @@ if choice == "New":
 
     if FP_search == None or FP_search == "":
         
-          
-    else:
         for line in reversed(list(spamreader)):
             if FP_search.lower() in line[1].lower():
                 FP_load(line[0], line[1],line[2],line[3],line[4],line[5])
